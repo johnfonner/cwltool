@@ -18,15 +18,15 @@ _logger = logging.getLogger("cwltool")
 def get_image(dockerRequirement, pull_image, dry_run=False):
     # type: (Dict[Text, Text], bool, bool) -> bool
     found = False
-    if "dockerImageId" not in dockerRequirement and "dockerPull" in dockerRequirement:
-        dockerRequirement["dockerImageId"] = dockerRequirement["dockerPull"]
 
-#DEBUG: CHECKS IMAGE REGISTRY FOR IDS. SINGULARITY EQ WOULD BE TO CHECK THE FOLDER FOR IMG.
-    #'node:slim'
-    imageString = dockerRequirement["dockerPull"].split(":")    
-    imageHit = "{}-{}.img".format(imageString[0], imageString[1])
-    if imageHit:
-        found = True
+    if "dockerImageId" not in dockerRequirement and "dockerPull" in dockerRequirement:
+        match = re.search(pattern=r'([a-z]*://)',string=dockerRequirement["dockerPull"])
+        if match:
+            dockerRequirement["dockerImageId"] = re.sub(pattern=r'([a-z]*://)', repl=r'', string=dockerRequirement["dockerPull"])
+            dockerRequirement["dockerImageId"] = re.sub(pattern=r'[:/]', repl=r'-', string=dockerRequirement["dockerImageId"]) + ".img"
+        else:
+            dockerRequirement["dockerImageId"] = re.sub(pattern=r'[:/]', repl=r'-', string=dockerRequirement["dockerPull"]) + ".img"
+
 #    for ln in subprocess.check_output(
 #            ["docker", "images", "--no-trunc", "--all"]).decode('utf-8').splitlines():
 #        try:
@@ -51,54 +51,54 @@ def get_image(dockerRequirement, pull_image, dry_run=False):
 #                break
 #        except ValueError:
 #            pass
-
-    if not found and pull_image:
+    if  pull_image:
         cmd = []  # type: List[Text]
         if "dockerPull" in dockerRequirement:
-            cmd = ["singularity", "pull", "docker://" + str(dockerRequirement["dockerPull"])]
+            cmd = ["singularity", "pull", "--name", str(dockerRequirement["dockerImageId"]), str(dockerRequirement["dockerPull"])]
             _logger.info(Text(cmd))
             if not dry_run:
                 subprocess.check_call(cmd, stdout=sys.stderr)
                 found = True
-        elif "dockerFile" in dockerRequirement:
-            dockerfile_dir = str(tempfile.mkdtemp())
-            with open(os.path.join(dockerfile_dir, "Dockerfile"), "wb") as df:
-                df.write(dockerRequirement["dockerFile"].encode('utf-8'))
-            cmd = ["docker", "build", "--tag=%s" %
-                   str(dockerRequirement["dockerImageId"]), dockerfile_dir]
-            _logger.info(Text(cmd))
-            if not dry_run:
-                subprocess.check_call(cmd, stdout=sys.stderr)
-                found = True
-        elif "dockerLoad" in dockerRequirement:
-            cmd = ["docker", "load"]
-            _logger.info(Text(cmd))
-            if not dry_run:
-                if os.path.exists(dockerRequirement["dockerLoad"]):
-                    _logger.info(u"Loading docker image from %s", dockerRequirement["dockerLoad"])
-                    with open(dockerRequirement["dockerLoad"], "rb") as f:
-                        loadproc = subprocess.Popen(cmd, stdin=f, stdout=sys.stderr)
-                else:
-                    loadproc = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=sys.stderr)
-                    _logger.info(u"Sending GET request to %s", dockerRequirement["dockerLoad"])
-                    req = requests.get(dockerRequirement["dockerLoad"], stream=True)
-                    n = 0
-                    for chunk in req.iter_content(1024 * 1024):
-                        n += len(chunk)
-                        _logger.info("\r%i bytes" % (n))
-                        loadproc.stdin.write(chunk)
-                    loadproc.stdin.close()
-                rcode = loadproc.wait()
-                if rcode != 0:
-                    raise WorkflowException("Docker load returned non-zero exit status %i" % (rcode))
-                found = True
-        elif "dockerImport" in dockerRequirement:
-            cmd = ["docker", "import", str(dockerRequirement["dockerImport"]),
-                   str(dockerRequirement["dockerImageId"])]
-            _logger.info(Text(cmd))
-            if not dry_run:
-                subprocess.check_call(cmd, stdout=sys.stderr)
-                found = True
+
+#        elif "dockerFile" in dockerRequirement:
+#            dockerfile_dir = str(tempfile.mkdtemp())
+#            with open(os.path.join(dockerfile_dir, "Dockerfile"), "wb") as df:
+#                df.write(dockerRequirement["dockerFile"].encode('utf-8'))
+#            cmd = ["docker", "build", "--tag=%s" %
+#                   str(dockerRequirement["dockerImageId"]), dockerfile_dir]
+#            _logger.info(Text(cmd))
+#            if not dry_run:
+#                subprocess.check_call(cmd, stdout=sys.stderr)
+#                found = True
+#        elif "dockerLoad" in dockerRequirement:
+#            cmd = ["docker", "load"]
+#            _logger.info(Text(cmd))
+#            if not dry_run:
+#                if os.path.exists(dockerRequirement["dockerLoad"]):
+#                    _logger.info(u"Loading docker image from %s", dockerRequirement["dockerLoad"])
+#                    with open(dockerRequirement["dockerLoad"], "rb") as f:
+#                        loadproc = subprocess.Popen(cmd, stdin=f, stdout=sys.stderr)
+#                else:
+#                    loadproc = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=sys.stderr)
+#                    _logger.info(u"Sending GET request to %s", dockerRequirement["dockerLoad"])
+#                    req = requests.get(dockerRequirement["dockerLoad"], stream=True)
+#                    n = 0
+#                    for chunk in req.iter_content(1024 * 1024):
+#                        n += len(chunk)
+#                        _logger.info("\r%i bytes" % (n))
+#                        loadproc.stdin.write(chunk)
+#                    loadproc.stdin.close()
+#                rcode = loadproc.wait()
+#                if rcode != 0:
+#                    raise WorkflowException("Docker load returned non-zero exit status %i" % (rcode))
+#                found = True
+#        elif "dockerImport" in dockerRequirement:
+#            cmd = ["docker", "import", str(dockerRequirement["dockerImport"]),
+#                   str(dockerRequirement["dockerImageId"])]
+#            _logger.info(Text(cmd))
+#            if not dry_run:
+#                subprocess.check_call(cmd, stdout=sys.stderr)
+#                found = True
 
     return found
 
