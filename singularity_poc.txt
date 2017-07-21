@@ -9,6 +9,22 @@ Evaluated using the typical ´cwl-runner tool.cwl job.yml`
 Passed `make test`.
 Some issues running the CWL test spec `https://github.com/common-workflow-language/common-workflow-language.git` due to lack of nodeJS. Rerunning...
 
+Initial results:
+Test [89/89] 
+Test failed: /usr/local/bin/cwl-runner --outdir=/tmp/tmp8MIWul --quiet v1.0/inline-js.cwl v1.0/empty.json
+Test InlineJavascriptRequirement with multiple expressions in the same tool
+Returned non-zero
+Workflow error, try again with --debug for more information:
+v1.0/inline-js.cwl:30:5: Expression evaluation error:
+                         cwltool requires Node.js engine to evaluate Javascript expressions, but
+                         couldn't find it.  Tried nodejs, node, docker run node:slim
 
+39 tests passed, 50 failures, 0 unsupported features
 
+1 tool tests failed
+
+After adding nodejs to the box:
+65 tests passed, 24 failures, 0 unsupported features
+
+Confirmity test attached as sing_conform.log
 

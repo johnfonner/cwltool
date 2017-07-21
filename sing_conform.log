@@ -1,0 +1,1273 @@
+--- Running conformance test v1.0 on /usr/local/bin/cwl-runner ---
+/usr/local/bin/cwl-runner 1.0.20170721145113
+Test [1/89] 
+
+No JSON object could be decoded
+Req docker
+{
+    "args": [
+        "bwa", 
+        "mem", 
+        "-t", 
+        "4", 
+        "-I", 
+        "1,2,3,4", 
+        "-m", 
+        "3", 
+        "chr20.fa", 
+        "example_human_Illumina.pe_1.fastq", 
+        "example_human_Illumina.pe_2.fastq"
+    ]
+}
+
+
+Test failed: /usr/local/bin/cwl-runner --outdir=/tmp/tmpeE7mN9 --quiet v1.0/bwa-mem-tool.cwl v1.0/bwa-mem-job.json
+General test of command line generation
+Compare failure expected: {
+    "args": [
+        "bwa", 
+        "mem", 
+        "-t", 
+        "4", 
+        "-I", 
+        "1,2,3,4", 
+        "-m", 
+        "3", 
+        "chr20.fa", 
+        "example_human_Illumina.pe_1.fastq", 
+        "example_human_Illumina.pe_2.fastq"
+    ]
+}
+got: {}
+caused by: failed comparison for key 'args': expected: [
+    "bwa", 
+    "mem", 
+    "-t", 
+    "4", 
+    "-I", 
+    "1,2,3,4", 
+    "-m", 
+    "3", 
+    "chr20.fa", 
+    "example_human_Illumina.pe_1.fastq", 
+    "example_human_Illumina.pe_2.fastq"
+]
+got: null
+Test [2/89] 
+
+No JSON object could be decoded
+Req docker
+{
+    "args": [
+        "bwa", 
+        "mem", 
+        "chr20.fa", 
+        "-XXX", 
+        "-YYY", 
+        "example_human_Illumina.pe_1.fastq", 
+        "-YYY", 
+        "example_human_Illumina.pe_2.fastq"
+    ]
+}
+
+
+Test failed: /usr/local/bin/cwl-runner --outdir=/tmp/tmpvJQTP0 --quiet v1.0/binding-test.cwl v1.0/bwa-mem-job.json
+Test nested prefixes with arrays
+Compare failure expected: {
+    "args": [
+        "bwa", 
+        "mem", 
+        "chr20.fa", 
+        "-XXX", 
+        "-YYY", 
+        "example_human_Illumina.pe_1.fastq", 
+        "-YYY", 
+        "example_human_Illumina.pe_2.fastq"
+    ]
+}
+got: {}
+caused by: failed comparison for key 'args': expected: [
+    "bwa", 
+    "mem", 
+    "chr20.fa", 
+    "-XXX", 
+    "-YYY", 
+    "example_human_Illumina.pe_1.fastq", 
+    "-YYY", 
+    "example_human_Illumina.pe_2.fastq"
+]
+got: null
+Test [3/89] 
+
+No JSON object could be decoded
+Req docker
+{
+    "args": [
+        "tmap", 
+        "mapall", 
+        "stage1", 
+        "map1", 
+        "--min-seq-length", 
+        "20", 
+        "map2", 
+        "--min-seq-length", 
+        "20", 
+        "stage2", 
+        "map1", 
+        "--max-seq-length", 
+        "20", 
+        "--min-seq-length", 
+        "10", 
+        "--seed-length", 
+        "16", 
+        "map2", 
+        "--max-seed-hits", 
+        "-1", 
+        "--max-seq-length", 
+        "20", 
+        "--min-seq-length", 
+        "10"
+    ]
+}
+
+
+Test failed: /usr/local/bin/cwl-runner --outdir=/tmp/tmpRgNiRj --quiet v1.0/tmap-tool.cwl v1.0/tmap-job.json
+Test nested command line bindings
+Compare failure expected: {
+    "args": [
+        "tmap", 
+        "mapall", 
+        "stage1", 
+        "map1", 
+        "--min-seq-length", 
+        "20", 
+        "map2", 
+        "--min-seq-length", 
+        "20", 
+        "stage2", 
+        "map1", 
+        "--max-seq-length", 
+        "20", 
+        "--min-seq-length", 
+        "10", 
+        "--seed-length", 
+        "16", 
+        "map2", 
+        "--max-seed-hits", 
+        "-1", 
+        "--max-seq-length", 
+        "20", 
+        "--min-seq-length", 
+        "10"
+    ]
+}
+got: {}
+caused by: failed comparison for key 'args': expected: [
+    "tmap", 
+    "mapall", 
+    "stage1", 
+    "map1", 
+    "--min-seq-length", 
+    "20", 
+    "map2", 
+    "--min-seq-length", 
+    "20", 
+    "stage2", 
+    "map1", 
+    "--max-seq-length", 
+    "20", 
+    "--min-seq-length", 
+    "10", 
+    "--seed-length", 
+    "16", 
+    "map2", 
+    "--max-seed-hits", 
+    "-1", 
+    "--max-seq-length", 
+    "20", 
+    "--min-seq-length", 
+    "10"
+]
+got: null
+Test [4/89] 
+
+No JSON object could be decoded
+Req docker
+{
+    "args": [
+        "cat", 
+        "hello.txt"
+    ]
+}
+
+
+Test failed: /usr/local/bin/cwl-runner --outdir=/tmp/tmpfemfvc --quiet v1.0/cat1-testcli.cwl v1.0/cat-job.json
+Test command line with optional input (missing)
+Compare failure expected: {
+    "args": [
+        "cat", 
+        "hello.txt"
+    ]
+}
+got: {}
+caused by: failed comparison for key 'args': expected: [
+    "cat", 
+    "hello.txt"
+]
+got: null
+Test [5/89] 
+
+No JSON object could be decoded
+Req docker
+{
+    "args": [
+        "cat", 
+        "-n", 
+        "hello.txt"
+    ]
+}
+
+
+Test failed: /usr/local/bin/cwl-runner --outdir=/tmp/tmpqGsF8v --quiet v1.0/cat1-testcli.cwl v1.0/cat-n-job.json
+Test command line with optional input (provided)
+Compare failure expected: {
+    "args": [
+        "cat", 
+        "-n", 
+        "hello.txt"
+    ]
+}
+got: {}
+caused by: failed comparison for key 'args': expected: [
+    "cat", 
+    "-n", 
+    "hello.txt"
+]
+got: null
+Test [6/89] 
+
+No JSON object could be decoded
+Req docker
+{
+    "foo": {
+        "checksum": "sha1$63da67422622fbf9251a046d7a34b7ea0fd4fead", 
+        "basename": "foo.txt", 
+        "nameroot": "foo", 
+        "nameext": ".txt", 
+        "http://commonwl.org/cwltool#generation": 0, 
+        "location": "file:///tmp/tmp0eAN_H/foo.txt", 
+        "path": "/tmp/tmp0eAN_H/foo.txt", 
+        "class": "File", 
+        "size": 22
+    }
+}
+
+The file is hello.txt
+
+Test failed: /usr/local/bin/cwl-runner --outdir=/tmp/tmp0eAN_H --quiet v1.0/template-tool.cwl v1.0/cat-job.json
+Test InitialWorkDirRequirement ExpressionEngineRequirement.engineConfig feature
+Compare failure expected: {
+    "foo": {
+        "checksum": "sha1$63da67422622fbf9251a046d7a34b7ea0fd4fead", 
+        "class": "File", 
+        "location": "foo.txt", 
+        "size": 22
+    }
+}
+got: {}
+caused by: failed comparison for key 'foo': expected: {
+    "checksum": "sha1$63da67422622fbf9251a046d7a34b7ea0fd4fead", 
+    "class": "File", 
+    "location": "foo.txt", 
+    "size": 22
+}
+got: null
+Test [7/89] 
+
+No JSON object could be decoded
+Req docker
+{
+    "output_file": {
+        "checksum": "sha1$47a013e660d408619d894b20806b1d5086aab03b", 
+        "basename": "output.txt", 
+        "nameroot": "output", 
+        "nameext": ".txt", 
+        "http://commonwl.org/cwltool#generation": 0, 
+        "location": "file:///tmp/tmpzh2L4r/output.txt", 
+        "path": "/tmp/tmpzh2L4r/output.txt", 
+        "class": "File", 
+        "size": 13
+    }
+}
+
+
+Test failed: /usr/local/bin/cwl-runner --outdir=/tmp/tmpzh2L4r --quiet v1.0/cat3-tool.cwl v1.0/cat-job.json
+Test command execution in Docker with stdout redirection
+Compare failure expected: {
+    "output_file": {
+        "checksum": "sha1$47a013e660d408619d894b20806b1d5086aab03b", 
+        "class": "File", 
+        "location": "output.txt", 
+        "size": 13
+    }
+}
+got: {}
+caused by: failed comparison for key 'output_file': expected: {
+    "checksum": "sha1$47a013e660d408619d894b20806b1d5086aab03b", 
+    "class": "File", 
+    "location": "output.txt", 
+    "size": 13
+}
+got: null
+Test [8/89] 
+
+No JSON object could be decoded
+Req docker
+{
+    "output_file": {
+        "checksum": "sha1$47a013e660d408619d894b20806b1d5086aab03b", 
+        "basename": "e15b7f51-38a3-458b-bf31-5b5a375fa347", 
+        "nameroot": "e15b7f51-38a3-458b-bf31-5b5a375fa347", 
+        "nameext": "", 
+        "http://commonwl.org/cwltool#generation": 0, 
+        "location": "file:///tmp/tmpxtT0tG/e15b7f51-38a3-458b-bf31-5b5a375fa347", 
+        "path": "/tmp/tmpxtT0tG/e15b7f51-38a3-458b-bf31-5b5a375fa347", 
+        "class": "File", 
+        "size": 13
+    }
+}
+
+
+Test failed: /usr/local/bin/cwl-runner --outdir=/tmp/tmpxtT0tG --quiet v1.0/cat3-tool-shortcut.cwl v1.0/cat-job.json
+Test command execution in Docker with simplified syntax stdout redirection
+Compare failure expected: {
+    "output_file": {
+        "checksum": "sha1$47a013e660d408619d894b20806b1d5086aab03b", 
+        "class": "File", 
+        "location": "Any", 
+        "size": 13
+    }
+}
+got: {}
+caused by: failed comparison for key 'output_file': expected: {
+    "checksum": "sha1$47a013e660d408619d894b20806b1d5086aab03b", 
+    "class": "File", 
+    "location": "Any", 
+    "size": 13
+}
+got: null
+Test [9/89] 
+
+No JSON object could be decoded
+Req docker
+{
+    "output_file": {
+        "checksum": "sha1$47a013e660d408619d894b20806b1d5086aab03b", 
+        "basename": "cat-out", 
+        "nameroot": "cat-out", 
+        "nameext": "", 
+        "http://commonwl.org/cwltool#generation": 0, 
+        "location": "file:///tmp/tmpyPiP_R/cat-out", 
+        "path": "/tmp/tmpyPiP_R/cat-out", 
+        "class": "File", 
+        "size": 13
+    }
+}
+
+
+Test failed: /usr/local/bin/cwl-runner --outdir=/tmp/tmpyPiP_R --quiet v1.0/cat3-tool-mediumcut.cwl v1.0/cat-job.json
+Test command execution in Docker with stdout redirection
+Compare failure expected: {
+    "output_file": {
+        "checksum": "sha1$47a013e660d408619d894b20806b1d5086aab03b", 
+        "class": "File", 
+        "location": "cat-out", 
+        "size": 13
+    }
+}
+got: {}
+caused by: failed comparison for key 'output_file': expected: {
+    "checksum": "sha1$47a013e660d408619d894b20806b1d5086aab03b", 
+    "class": "File", 
+    "location": "cat-out", 
+    "size": 13
+}
+got: null
+Test [10/89] 
+
+Test [11/89] 
+
+Test [12/89] 
+
+Test [13/89] 
+
+No JSON object could be decoded
+Req docker
+{
+    "output_txt": {
+        "checksum": "sha1$47a013e660d408619d894b20806b1d5086aab03b", 
+        "basename": "output.txt", 
+        "nameroot": "output", 
+        "nameext": ".txt", 
+        "http://commonwl.org/cwltool#generation": 0, 
+        "location": "file:///tmp/tmp6YwRAq/output.txt", 
+        "path": "/tmp/tmp6YwRAq/output.txt", 
+        "class": "File", 
+        "size": 13
+    }
+}
+
+
+Test failed: /usr/local/bin/cwl-runner --outdir=/tmp/tmp6YwRAq --quiet v1.0/cat4-tool.cwl v1.0/cat-job.json
+Test command execution in Docker with stdin and stdout redirection
+Compare failure expected: {
+    "output_txt": {
+        "checksum": "sha1$47a013e660d408619d894b20806b1d5086aab03b", 
+        "class": "File", 
+        "location": "output.txt", 
+        "size": 13
+    }
+}
+got: {}
+caused by: failed comparison for key 'output_txt': expected: {
+    "checksum": "sha1$47a013e660d408619d894b20806b1d5086aab03b", 
+    "class": "File", 
+    "location": "output.txt", 
+    "size": 13
+}
+got: null
+Test [14/89] 
+
+Test [15/89] 
+
+Test [16/89] 
+
+Test [17/89] 
+
+Test [18/89] 
+
+Test [19/89] 
+
+Test [20/89] 
+
+Test [21/89] 
+
+Test [22/89] 
+
+Test [23/89] 
+
+Test [24/89] 
+
+Test [25/89] 
+
+Test [26/89] 
+
+Test [27/89] 
+
+Test [28/89] 
+
+Test [29/89] 
+
+Test [30/89] 
+
+Test [31/89] 
+
+Test [32/89] 
+
+Test [33/89] 
+
+Test [34/89] 
+
+Test [35/89] 
+
+Test [36/89] 
+
+Test [37/89] 
+
+Test [38/89] 
+
+Test [39/89] 
+
+Test [40/89] 
+
+No JSON object could be decoded
+Req docker
+Req docker
+{
+    "output": {
+        "checksum": "sha1$b9214658cc453331b62c2282b772a5c063dbd284", 
+        "basename": "output.txt", 
+        "nameroot": "output", 
+        "nameext": ".txt", 
+        "http://commonwl.org/cwltool#generation": 0, 
+        "location": "file:///tmp/tmpy8_fYN/output.txt", 
+        "path": "/tmp/tmpy8_fYN/output.txt", 
+        "class": "File", 
+        "size": 1111
+    }
+}
+
+
+Test failed: /usr/local/bin/cwl-runner --outdir=/tmp/tmpy8_fYN --quiet v1.0/revsort.cwl v1.0/revsort-job.json
+Test sample workflows from the specification
+Compare failure expected: {
+    "output": {
+        "checksum": "sha1$b9214658cc453331b62c2282b772a5c063dbd284", 
+        "class": "File", 
+        "location": "output.txt", 
+        "size": 1111
+    }
+}
+got: {}
+caused by: failed comparison for key 'output': expected: {
+    "checksum": "sha1$b9214658cc453331b62c2282b772a5c063dbd284", 
+    "class": "File", 
+    "location": "output.txt", 
+    "size": 1111
+}
+got: null
+Test [41/89] 
+
+No JSON object could be decoded
+Req docker
+{
+    "output_file": {
+        "checksum": "sha1$47a013e660d408619d894b20806b1d5086aab03b", 
+        "basename": "output.txt", 
+        "nameroot": "output", 
+        "nameext": ".txt", 
+        "http://commonwl.org/cwltool#generation": 0, 
+        "location": "file:///tmp/tmpwD8d5f/output.txt", 
+        "path": "/tmp/tmpwD8d5f/output.txt", 
+        "class": "File", 
+        "size": 13
+    }
+}
+
+v1.0/cat5-tool.cwl:10:3:   checking item
+v1.0/cat5-tool.cwl:10:3:     Field `class` contains undefined reference to `http://example.com/BlibberBlubberFakeRequirement`
+
+Test failed: /usr/local/bin/cwl-runner --outdir=/tmp/tmpwD8d5f --quiet v1.0/cat5-tool.cwl v1.0/cat-job.json
+Test unknown hints are ignored.
+Compare failure expected: {
+    "output_file": {
+        "checksum": "sha1$47a013e660d408619d894b20806b1d5086aab03b", 
+        "class": "File", 
+        "location": "output.txt", 
+        "size": 13
+    }
+}
+got: {}
+caused by: failed comparison for key 'output_file': expected: {
+    "checksum": "sha1$47a013e660d408619d894b20806b1d5086aab03b", 
+    "class": "File", 
+    "location": "output.txt", 
+    "size": 13
+}
+got: null
+Test [42/89] 
+
+No JSON object could be decoded
+Req docker
+Req docker
+{
+    "outfile": {
+        "checksum": "sha1$e2dc9daaef945ac15f01c238ed2f1660f60909a0", 
+        "basename": "result.txt", 
+        "nameroot": "result", 
+        "nameext": ".txt", 
+        "http://commonwl.org/cwltool#generation": 0, 
+        "location": "file:///tmp/tmp8If0uv/result.txt", 
+        "path": "/tmp/tmp8If0uv/result.txt", 
+        "class": "File", 
+        "size": 142
+    }, 
+    "indexedfile": {
+        "checksum": "sha1$327fc7aedf4f6b69a42a7c8b808dc5a7aff61376", 
+        "basename": "input.txt", 
+        "nameroot": "input", 
+        "nameext": ".txt", 
+        "http://commonwl.org/cwltool#generation": 0, 
+        "location": "file:///tmp/tmp8If0uv/input.txt", 
+        "path": "/tmp/tmp8If0uv/input.txt", 
+        "secondaryFiles": [
+            {
+                "checksum": "sha1$553f3a09003a9f69623f03bec13c0b078d706023", 
+                "basename": "input.txt.idx1", 
+                "nameroot": "input.txt", 
+                "nameext": ".idx1", 
+                "http://commonwl.org/cwltool#generation": 0, 
+                "location": "file:///tmp/tmp8If0uv/input.txt.idx1", 
+                "path": "/tmp/tmp8If0uv/input.txt.idx1", 
+                "class": "File", 
+                "size": 1500
+            }, 
+            {
+                "checksum": "sha1$da39a3ee5e6b4b0d3255bfef95601890afd80709", 
+                "basename": "input.idx2", 
+                "nameroot": "input", 
+                "nameext": ".idx2", 
+                "http://commonwl.org/cwltool#generation": 0, 
+                "location": "file:///tmp/tmp8If0uv/input.idx2", 
+                "path": "/tmp/tmp8If0uv/input.idx2", 
+                "class": "File", 
+                "size": 0
+            }, 
+            {
+                "checksum": "sha1$da39a3ee5e6b4b0d3255bfef95601890afd80709", 
+                "basename": "input.txt.idx3", 
+                "nameroot": "input.txt", 
+                "nameext": ".idx3", 
+                "http://commonwl.org/cwltool#generation": 0, 
+                "location": "file:///tmp/tmp8If0uv/input.txt.idx3", 
+                "path": "/tmp/tmp8If0uv/input.txt.idx3", 
+                "class": "File", 
+                "size": 0
+            }, 
+            {
+                "checksum": "sha1$da39a3ee5e6b4b0d3255bfef95601890afd80709", 
+                "basename": "input.txt.idx4", 
+                "nameroot": "input.txt", 
+                "nameext": ".idx4", 
+                "http://commonwl.org/cwltool#generation": 0, 
+                "location": "file:///tmp/tmp8If0uv/input.txt.idx4", 
+                "path": "/tmp/tmp8If0uv/input.txt.idx4", 
+                "class": "File", 
+                "size": 0
+            }, 
+            {
+                "checksum": "sha1$da39a3ee5e6b4b0d3255bfef95601890afd80709", 
+                "basename": "input.txt.idx5", 
+                "nameroot": "input.txt", 
+                "nameext": ".idx5", 
+                "http://commonwl.org/cwltool#generation": 0, 
+                "location": "file:///tmp/tmp8If0uv/input.txt.idx5", 
+                "path": "/tmp/tmp8If0uv/input.txt.idx5", 
+                "class": "File", 
+                "size": 0
+            }
+        ], 
+        "class": "File", 
+        "size": 1111
+    }
+}
+
+
+Test failed: /usr/local/bin/cwl-runner --outdir=/tmp/tmp8If0uv --quiet 'v1.0/search.cwl#main' v1.0/search-job.json
+Test InitialWorkDirRequirement linking input files and capturing secondaryFiles
+on input and output.
+
+Compare failure expected: {
+    "indexedfile": {
+        "checksum": "sha1$327fc7aedf4f6b69a42a7c8b808dc5a7aff61376", 
+        "class": "File", 
+        "location": "input.txt", 
+        "secondaryFiles": [
+            {
+                "checksum": "sha1$553f3a09003a9f69623f03bec13c0b078d706023", 
+                "class": "File", 
+                "location": "input.txt.idx1", 
+                "size": 1500
+            }, 
+            {
+                "checksum": "sha1$da39a3ee5e6b4b0d3255bfef95601890afd80709", 
+                "class": "File", 
+                "location": "input.idx2", 
+                "size": 0
+            }, 
+            {
+                "checksum": "sha1$da39a3ee5e6b4b0d3255bfef95601890afd80709", 
+                "class": "File", 
+                "location": "input.txt.idx3", 
+                "size": 0
+            }, 
+            {
+                "checksum": "sha1$da39a3ee5e6b4b0d3255bfef95601890afd80709", 
+                "class": "File", 
+                "location": "input.txt.idx4", 
+                "size": 0
+            }, 
+            {
+                "checksum": "sha1$da39a3ee5e6b4b0d3255bfef95601890afd80709", 
+                "class": "File", 
+                "location": "input.txt.idx5", 
+                "size": 0
+            }
+        ], 
+        "size": 1111
+    }, 
+    "outfile": {
+        "checksum": "sha1$e2dc9daaef945ac15f01c238ed2f1660f60909a0", 
+        "class": "File", 
+        "location": "result.txt", 
+        "size": 142
+    }
+}
+got: {}
+caused by: failed comparison for key 'outfile': expected: {
+    "checksum": "sha1$e2dc9daaef945ac15f01c238ed2f1660f60909a0", 
+    "class": "File", 
+    "location": "result.txt", 
+    "size": 142
+}
+got: null
+Test [43/89] 
+
+Test [44/89] 
+
+Test [45/89] 
+
+Test [46/89] 
+
+Test [47/89] 
+
+Test [48/89] 
+
+Test [49/89] 
+
+No JSON object could be decoded
+Req docker
+{}
+
+v1.0/metadata.cwl:2:1: unrecognized extension field `http://purl.org/dc/terms/creator`.  Did you include a $schemas section?
+Hello world!
+
+Test [50/89] 
+
+Test [51/89] 
+
+Test [52/89] 
+
+Test [53/89] 
+
+No JSON object could be decoded
+Req docker
+{
+    "optional_file": null, 
+    "output_file": {
+        "checksum": "sha1$47a013e660d408619d894b20806b1d5086aab03b", 
+        "basename": "output.txt", 
+        "nameroot": "output", 
+        "nameext": ".txt", 
+        "http://commonwl.org/cwltool#generation": 0, 
+        "location": "file:///tmp/tmpkpxdPa/output.txt", 
+        "path": "/tmp/tmpkpxdPa/output.txt", 
+        "secondaryFiles": [], 
+        "class": "File", 
+        "size": 13
+    }
+}
+
+
+Test failed: /usr/local/bin/cwl-runner --outdir=/tmp/tmpkpxdPa --quiet v1.0/optional-output.cwl v1.0/cat-job.json
+Test optional output file and optional secondaryFile on output.
+
+Compare failure expected: {
+    "optional_file": null, 
+    "output_file": {
+        "checksum": "sha1$47a013e660d408619d894b20806b1d5086aab03b", 
+        "class": "File", 
+        "location": "output.txt", 
+        "size": 13
+    }
+}
+got: {}
+caused by: failed comparison for key 'output_file': expected: {
+    "checksum": "sha1$47a013e660d408619d894b20806b1d5086aab03b", 
+    "class": "File", 
+    "location": "output.txt", 
+    "size": 13
+}
+got: null
+Test [54/89] 
+
+Test [55/89] 
+
+Test [56/89] 
+
+Test [57/89] 
+
+Test [58/89] 
+
+No JSON object could be decoded
+Req docker
+{
+    "foo": {
+        "checksum": "sha1$f1d2d2f924e986ac86fdf7b36c94bcdf32beec15", 
+        "basename": "foo", 
+        "nameroot": "foo", 
+        "nameext": "", 
+        "http://commonwl.org/cwltool#generation": 0, 
+        "location": "file:///tmp/tmp6QauW8/foo", 
+        "path": "/tmp/tmp6QauW8/foo", 
+        "class": "File", 
+        "size": 4
+    }
+}
+
+
+Test failed: /usr/local/bin/cwl-runner --outdir=/tmp/tmp6QauW8 --quiet v1.0/test-cwl-out.cwl v1.0/empty.json
+Test support for reading cwl.output.json when running in a Docker container
+and just 'path' is provided.
+
+Compare failure expected: {
+    "foo": {
+        "checksum": "sha1$f1d2d2f924e986ac86fdf7b36c94bcdf32beec15", 
+        "class": "File", 
+        "location": "foo", 
+        "size": 4
+    }
+}
+got: {}
+caused by: failed comparison for key 'foo': expected: {
+    "checksum": "sha1$f1d2d2f924e986ac86fdf7b36c94bcdf32beec15", 
+    "class": "File", 
+    "location": "foo", 
+    "size": 4
+}
+got: null
+Test [59/89] 
+
+No JSON object could be decoded
+Req docker
+{
+    "foo": {
+        "checksum": "sha1$f1d2d2f924e986ac86fdf7b36c94bcdf32beec15", 
+        "basename": "foo", 
+        "nameroot": "foo", 
+        "nameext": "", 
+        "http://commonwl.org/cwltool#generation": 0, 
+        "location": "file:///tmp/tmpWmiBz0/foo", 
+        "path": "/tmp/tmpWmiBz0/foo", 
+        "class": "File", 
+        "size": 4
+    }
+}
+
+
+Test failed: /usr/local/bin/cwl-runner --outdir=/tmp/tmpWmiBz0 --quiet v1.0/test-cwl-out2.cwl v1.0/empty.json
+Test support for reading cwl.output.json when running in a Docker container
+and just 'location' is provided.
+
+Compare failure expected: {
+    "foo": {
+        "checksum": "sha1$f1d2d2f924e986ac86fdf7b36c94bcdf32beec15", 
+        "class": "File", 
+        "location": "foo", 
+        "size": 4
+    }
+}
+got: {}
+caused by: failed comparison for key 'foo': expected: {
+    "checksum": "sha1$f1d2d2f924e986ac86fdf7b36c94bcdf32beec15", 
+    "class": "File", 
+    "location": "foo", 
+    "size": 4
+}
+got: null
+Test [60/89] 
+
+Test [61/89] 
+
+Test [62/89] 
+
+Test [63/89] 
+
+Test [64/89] 
+
+Test [65/89] 
+
+Test [66/89] 
+
+Test [67/89] 
+
+Test [68/89] 
+
+No JSON object could be decoded
+Req docker
+{
+    "outlist": {
+        "checksum": "sha1$13cda8661796ae241da3a18668fb552161a72592", 
+        "basename": "output.txt", 
+        "nameroot": "output", 
+        "nameext": ".txt", 
+        "http://commonwl.org/cwltool#generation": 0, 
+        "location": "file:///tmp/tmpVD6UCd/output.txt", 
+        "path": "/tmp/tmpVD6UCd/output.txt", 
+        "class": "File", 
+        "size": 20
+    }
+}
+
+
+Test failed: /usr/local/bin/cwl-runner --outdir=/tmp/tmpVD6UCd --quiet v1.0/dir2.cwl v1.0/dir-job.yml
+Test directory input in Docker
+Compare failure expected: {
+    "outlist": {
+        "checksum": "sha1$13cda8661796ae241da3a18668fb552161a72592", 
+        "class": "File", 
+        "location": "output.txt", 
+        "size": 20
+    }
+}
+got: {}
+caused by: failed comparison for key 'outlist': expected: {
+    "checksum": "sha1$13cda8661796ae241da3a18668fb552161a72592", 
+    "class": "File", 
+    "location": "output.txt", 
+    "size": 20
+}
+got: null
+Test [69/89] 
+
+Test [70/89] 
+
+Test [71/89] 
+
+Test [72/89] 
+
+No JSON object could be decoded
+Req docker
+{
+    "outfile": {
+        "checksum": "sha1$b769c7b2e316edd4b5eb2d24799b2c1f9d8c86e6", 
+        "basename": "bob.txt", 
+        "nameroot": "bob", 
+        "nameext": ".txt", 
+        "http://commonwl.org/cwltool#generation": 0, 
+        "location": "file:///tmp/tmpR1kBJ5/bob.txt", 
+        "path": "/tmp/tmpR1kBJ5/bob.txt", 
+        "class": "File", 
+        "size": 1111
+    }
+}
+
+
+Test failed: /usr/local/bin/cwl-runner --outdir=/tmp/tmpR1kBJ5 --quiet v1.0/stagefile.cwl v1.0/stagefile-job.yml
+Test writable staged files.
+Compare failure expected: {
+    "outfile": {
+        "checksum": "sha1$b769c7b2e316edd4b5eb2d24799b2c1f9d8c86e6", 
+        "class": "File", 
+        "location": "bob.txt", 
+        "size": 1111
+    }
+}
+got: {}
+caused by: failed comparison for key 'outfile': expected: {
+    "checksum": "sha1$b769c7b2e316edd4b5eb2d24799b2c1f9d8c86e6", 
+    "class": "File", 
+    "location": "bob.txt", 
+    "size": 1111
+}
+got: null
+Test [73/89] 
+
+No JSON object could be decoded
+Req docker
+{
+    "output_file": {
+        "checksum": "sha1$d0e04ff6c413c7d57f9a0ca0a33cd3ab52e2dd9c", 
+        "basename": "output.txt", 
+        "nameroot": "output", 
+        "nameext": ".txt", 
+        "http://commonwl.org/cwltool#generation": 0, 
+        "location": "file:///tmp/tmpex78Az/output.txt", 
+        "path": "/tmp/tmpex78Az/output.txt", 
+        "class": "File", 
+        "size": 18
+    }
+}
+
+
+Test failed: /usr/local/bin/cwl-runner --outdir=/tmp/tmpex78Az --quiet v1.0/cat3-tool.cwl v1.0/file-literal.yml
+Test file literal as input
+Compare failure expected: {
+    "output_file": {
+        "checksum": "sha1$d0e04ff6c413c7d57f9a0ca0a33cd3ab52e2dd9c", 
+        "class": "File", 
+        "location": "output.txt", 
+        "size": 18
+    }
+}
+got: {}
+caused by: failed comparison for key 'output_file': expected: {
+    "checksum": "sha1$d0e04ff6c413c7d57f9a0ca0a33cd3ab52e2dd9c", 
+    "class": "File", 
+    "location": "output.txt", 
+    "size": 18
+}
+got: null
+Test [74/89] 
+
+No JSON object could be decoded
+Req docker
+{
+    "classfile": {
+        "checksum": "sha1$e68df795c0686e9aa1a1195536bd900f5f417b18", 
+        "basename": "Hello.class", 
+        "nameroot": "Hello", 
+        "nameext": ".class", 
+        "http://commonwl.org/cwltool#generation": 0, 
+        "location": "file:///tmp/tmphwGkmv/Hello.class", 
+        "path": "/tmp/tmphwGkmv/Hello.class", 
+        "class": "File", 
+        "size": 184
+    }
+}
+
+
+Test failed: /usr/local/bin/cwl-runner --outdir=/tmp/tmphwGkmv --quiet examples/linkfile.cwl examples/arguments-job.yml
+Test expression in InitialWorkDir listing
+Compare failure expected: {
+    "classfile": {
+        "checksum": "sha1$e68df795c0686e9aa1a1195536bd900f5f417b18", 
+        "class": "File", 
+        "location": "Hello.class", 
+        "size": 184
+    }
+}
+got: {}
+caused by: failed comparison for key 'classfile': expected: {
+    "checksum": "sha1$e68df795c0686e9aa1a1195536bd900f5f417b18", 
+    "class": "File", 
+    "location": "Hello.class", 
+    "size": 184
+}
+got: null
+Test [75/89] 
+
+Test [76/89] 
+
+Test [77/89] 
+
+Test [78/89] 
+
+Test [79/89] 
+
+No JSON object could be decoded
+Req docker
+{}
+
+HOME=/var/spool/cwl TMPDIR=/tmp
+
+Test [80/89] 
+
+Test [81/89] 
+
+No JSON object could be decoded
+Req docker
+{
+    "OUTPUT": {
+        "checksum": "sha1$aeb3d11bdf536511649129f4077d5cda6a324118", 
+        "basename": "ref.fasta", 
+        "nameroot": "ref", 
+        "nameext": ".fasta", 
+        "http://commonwl.org/cwltool#generation": 0, 
+        "location": "file:///tmp/tmpvSzaen/ref.fasta", 
+        "path": "/tmp/tmpvSzaen/ref.fasta", 
+        "secondaryFiles": [
+            {
+                "checksum": "sha1$da39a3ee5e6b4b0d3255bfef95601890afd80709", 
+                "basename": "ref.fasta.fai", 
+                "nameroot": "ref.fasta", 
+                "nameext": ".fai", 
+                "http://commonwl.org/cwltool#generation": 0, 
+                "location": "file:///tmp/tmpvSzaen/ref.fasta.fai", 
+                "path": "/tmp/tmpvSzaen/ref.fasta.fai", 
+                "class": "File", 
+                "size": 0
+            }
+        ], 
+        "class": "File", 
+        "size": 12010
+    }
+}
+
+
+Test failed: /usr/local/bin/cwl-runner --outdir=/tmp/tmpvSzaen --quiet v1.0/initialworkdirrequirement-docker-out.cwl v1.0/initialworkdirrequirement-docker-out-job.json
+Test output of InitialWorkDir
+Compare failure expected: {
+    "OUTPUT": {
+        "checksum": "sha1$aeb3d11bdf536511649129f4077d5cda6a324118", 
+        "class": "File", 
+        "location": "ref.fasta", 
+        "secondaryFiles": [
+            {
+                "checksum": "sha1$da39a3ee5e6b4b0d3255bfef95601890afd80709", 
+                "class": "File", 
+                "location": "ref.fasta.fai", 
+                "size": 0
+            }
+        ], 
+        "size": 12010
+    }
+}
+got: {}
+caused by: failed comparison for key 'OUTPUT': expected: {
+    "checksum": "sha1$aeb3d11bdf536511649129f4077d5cda6a324118", 
+    "class": "File", 
+    "location": "ref.fasta", 
+    "secondaryFiles": [
+        {
+            "checksum": "sha1$da39a3ee5e6b4b0d3255bfef95601890afd80709", 
+            "class": "File", 
+            "location": "ref.fasta.fai", 
+            "size": 0
+        }
+    ], 
+    "size": 12010
+}
+got: null
+Test [82/89] 
+
+Test [83/89] 
+
+No JSON object could be decoded
+Req docker
+{
+    "bai_list": {
+        "checksum": "sha1$081fc0e57d6efa5f75eeb237aab1d04031132be6", 
+        "basename": "fai.list", 
+        "nameroot": "fai", 
+        "nameext": ".list", 
+        "http://commonwl.org/cwltool#generation": 0, 
+        "location": "file:///tmp/tmpiEHKuu/fai.list", 
+        "path": "/tmp/tmpiEHKuu/fai.list", 
+        "class": "File", 
+        "size": 386
+    }
+}
+
+
+Test failed: /usr/local/bin/cwl-runner --outdir=/tmp/tmpiEHKuu --quiet v1.0/docker-array-secondaryfiles.cwl v1.0/docker-array-secondaryfiles-job.json
+Test secondaryFiles on array of files.
+Compare failure expected: {
+    "bai_list": {
+        "checksum": "sha1$081fc0e57d6efa5f75eeb237aab1d04031132be6", 
+        "class": "File", 
+        "location": "fai.list", 
+        "size": 386
+    }
+}
+got: {}
+caused by: failed comparison for key 'bai_list': expected: {
+    "checksum": "sha1$081fc0e57d6efa5f75eeb237aab1d04031132be6", 
+    "class": "File", 
+    "location": "fai.list", 
+    "size": 386
+}
+got: null
+Test [84/89] 
+
+Test [85/89] 
+
+Test [86/89] 
+
+No JSON object could be decoded
+Req docker
+{
+    "thing": {
+        "checksum": "sha1$da39a3ee5e6b4b0d3255bfef95601890afd80709", 
+        "basename": "thing", 
+        "nameroot": "thing", 
+        "nameext": "", 
+        "http://commonwl.org/cwltool#generation": 0, 
+        "location": "file:///tmp/tmpXCQE97/thing", 
+        "path": "/tmp/tmpXCQE97/thing", 
+        "class": "File", 
+        "size": 0
+    }
+}
+
+
+Test failed: /usr/local/bin/cwl-runner --outdir=/tmp/tmpXCQE97 --quiet v1.0/docker-output-dir.cwl v1.0/empty.json
+Test dockerOutputDirectory
+Compare failure expected: {
+    "thing": {
+        "checksum": "sha1$da39a3ee5e6b4b0d3255bfef95601890afd80709", 
+        "class": "File", 
+        "location": "thing", 
+        "size": 0
+    }
+}
+got: {}
+caused by: failed comparison for key 'thing': expected: {
+    "checksum": "sha1$da39a3ee5e6b4b0d3255bfef95601890afd80709", 
+    "class": "File", 
+    "location": "thing", 
+    "size": 0
+}
+got: null
+Test [87/89] 
+
+Test [88/89] 
+
+Test [89/89] 
+
+No JSON object could be decoded
+Req docker
+{
+    "args": [
+        "-A", 
+        "2", 
+        "-B", 
+        "baz", 
+        "-C", 
+        "10", 
+        "9", 
+        "8", 
+        "7", 
+        "6", 
+        "5", 
+        "4", 
+        "3", 
+        "2", 
+        "1"
+    ]
+}
+
+
+Test failed: /usr/local/bin/cwl-runner --outdir=/tmp/tmpmMLKpF --quiet v1.0/inline-js.cwl v1.0/empty.json
+Test InlineJavascriptRequirement with multiple expressions in the same tool
+Compare failure expected: {
+    "args": [
+        "-A", 
+        "2", 
+        "-B", 
+        "baz", 
+        "-C", 
+        "10", 
+        "9", 
+        "8", 
+        "7", 
+        "6", 
+        "5", 
+        "4", 
+        "3", 
+        "2", 
+        "1"
+    ]
+}
+got: {}
+caused by: failed comparison for key 'args': expected: [
+    "-A", 
+    "2", 
+    "-B", 
+    "baz", 
+    "-C", 
+    "10", 
+    "9", 
+    "8", 
+    "7", 
+    "6", 
+    "5", 
+    "4", 
+    "3", 
+    "2", 
+    "1"
+]
+got: null
+65 tests passed, 24 failures, 0 unsupported features
+
+1 tool tests failed
