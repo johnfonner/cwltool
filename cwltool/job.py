@@ -316,10 +316,10 @@ class DockerCommandLineJob(JobBase):
                 containertgt = vol.target
             if vol.type in ("File", "Directory"):
                 if not vol.resolved.startswith("_:"):
-                    runtime.append(u"--bind=%s:%s:ro" % (docker_windows_path_adjust(vol.resolved), docker_windows_path_adjust(containertgt)))
+                    runtime.append(u"--bind %s:%s:ro" % (docker_windows_path_adjust(vol.resolved), docker_windows_path_adjust(containertgt)))
             elif vol.type == "WritableFile":
                 if self.inplace_update:
-                    runtime.append(u"--bind=%s:%s:rw" % (docker_windows_path_adjust(vol.resolved), docker_windows_path_adjust(containertgt)))
+                    runtime.append(u"--bind %s:%s:rw" % (docker_windows_path_adjust(vol.resolved), docker_windows_path_adjust(containertgt)))
                 else:
                     shutil.copy(vol.resolved, vol.target)
             elif vol.type == "WritableDirectory":
@@ -327,14 +327,14 @@ class DockerCommandLineJob(JobBase):
                     os.makedirs(vol.target, 0o0755)
                 else:
                     if self.inplace_update:
-                        runtime.append(u"--bind=%s:%s:rw" % (docker_windows_path_adjust(vol.resolved), docker_windows_path_adjust(containertgt)))
+                        runtime.append(u"--bind %s:%s:rw" % (docker_windows_path_adjust(vol.resolved), docker_windows_path_adjust(containertgt)))
                     else:
                         shutil.copytree(vol.resolved, vol.target)
             elif vol.type == "CreateFile":
                 createtmp = os.path.join(host_outdir, os.path.basename(vol.target))
                 with open(createtmp, "wb") as f:
                     f.write(vol.resolved.encode("utf-8"))
-                runtime.append(u"--bind=%s:%s:ro" % (docker_windows_path_adjust(createtmp), docker_windows_path_adjust(vol.target)))
+                runtime.append(u"--bind %s:%s:ro" % (docker_windows_path_adjust(createtmp), docker_windows_path_adjust(vol.target)))
 
 
     def run(self, pull_image=True, rm_container=True,
@@ -373,14 +373,14 @@ class DockerCommandLineJob(JobBase):
 
         runtime = [u"singularity", u"exec"]
 
-        runtime.append(u"--bind=%s:%s:rw" % (docker_windows_path_adjust(os.path.realpath(self.outdir)), self.builder.outdir))
-        runtime.append(u"--bind=%s:%s:rw" % (docker_windows_path_adjust(os.path.realpath(self.tmpdir)), "/tmp"))
+        runtime.append(u"--bind %s:%s:rw" % (docker_windows_path_adjust(os.path.realpath(self.outdir)), self.builder.outdir))
+        runtime.append(u"--bind %s:%s:rw" % (docker_windows_path_adjust(os.path.realpath(self.tmpdir)), "/tmp"))
 
         self.add_volumes(self.pathmapper, runtime, False)
         if self.generatemapper:
             self.add_volumes(self.generatemapper, runtime, True)
 
-        runtime.append(u"--pwd=%s" % (docker_windows_path_adjust(self.builder.outdir)))
+        runtime.append(u"--pwd %s" % (docker_windows_path_adjust(self.builder.outdir)))
 #        runtime.append(u"--read-only=true")  # true by default for Singularity images
 
         if kwargs.get("custom_net", None) is not None:
@@ -399,8 +399,9 @@ class DockerCommandLineJob(JobBase):
         else:
             euid = docker_vm_uid() or os.geteuid()
 
-        if kwargs.get("no_match_user", None) is False and euid is not None:
-            runtime.append(u"--user=%s" % (euid))
+# --user doesn't mean the same thing in Singularity. Let's remove it.
+#        if kwargs.get("no_match_user", None) is False and euid is not None:
+#            runtime.append(u"--user=%s" % (euid))
 
 # No equivalent
 #        if rm_container:
