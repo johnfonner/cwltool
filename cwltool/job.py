@@ -514,8 +514,6 @@ def _job_popen(
                 stderr=sys.stderr,  # to be captured. Else just write everything to stderr (same as above).
                 stdin=subprocess.PIPE,
             )
-	    import pdb
-	    pdb.set_trace()
             if sp.stdin:
                 sp.stdin.close()
 

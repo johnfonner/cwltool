@@ -52,13 +52,18 @@ def get_image(dockerRequirement, pull_image, dry_run=False):
 #                break
 #        except ValueError:
 #            pass
+
+#   DEBUG: Add cond here so that it doesnt pull if a file with the imageid is in the folder
     if  pull_image:
         cmd = []  # type: List[Text]
         if "dockerPull" in dockerRequirement:
             cmd = ["singularity", "pull", "--name", str(dockerRequirement["dockerImageId"]), str(dockerRequirement["dockerPull"])]
             _logger.info(Text(cmd))
             if not dry_run:
-                subprocess.check_call(cmd, stdout=sys.stderr)
+		if not os.path.isfile(dockerRequirement["dockerImageId"]):
+                    subprocess.check_call(cmd, stdout=sys.stderr)
+                else: 
+                    print "Target file {} already found. Attempting to use this file...".format(dockerRequirement["dockerImageId"])
                 found = True
 
 #        elif "dockerFile" in dockerRequirement:
