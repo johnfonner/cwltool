@@ -130,7 +130,7 @@ def get_from_requirements(r, req, pull_image, dry_run=False):
                 return None
 
         if get_image(r, pull_image, dry_run):
-            return r["dockerImageId"]
+            return os.path.abspath(r["dockerImageId"])
         else:
             if req:
                 raise WorkflowException(u"Container image %s not found" % r["dockerImageId"])
