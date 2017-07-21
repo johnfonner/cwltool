@@ -26,7 +26,7 @@ def get_image(dockerRequirement, pull_image, dry_run=False):
             dockerRequirement["dockerImageId"] = re.sub(pattern=r'[:/]', repl=r'-', string=dockerRequirement["dockerImageId"]) + ".img"
         else:
             dockerRequirement["dockerImageId"] = re.sub(pattern=r'[:/]', repl=r'-', string=dockerRequirement["dockerPull"]) + ".img"
-            dockerRequirement["dockerPull"] = "docker://" + dockerRequirement["dockerPull"])
+            dockerRequirement["dockerPull"] = "docker://" + dockerRequirement["dockerPull"]
 
 #    for ln in subprocess.check_output(
 #            ["docker", "images", "--no-trunc", "--all"]).decode('utf-8').splitlines():
@@ -52,7 +52,14 @@ def get_image(dockerRequirement, pull_image, dry_run=False):
 #                break
 #        except ValueError:
 #            pass
-    if  pull_image:
+
+    # check to see if the Singularity container is already downloaded
+    if os.path.isfile(dockerRequirement[" dockerImageId"])
+        _logger.info("Using local copy of Singularity image")
+        found = True
+
+    # if the .img file is not already present, pull the image
+    elif  pull_image:
         cmd = []  # type: List[Text]
         if "dockerPull" in dockerRequirement:
             cmd = ["singularity", "pull", "--name", str(dockerRequirement["dockerImageId"]), str(dockerRequirement["dockerPull"])]
@@ -106,14 +113,15 @@ def get_image(dockerRequirement, pull_image, dry_run=False):
 
 def get_from_requirements(r, req, pull_image, dry_run=False):
     # type: (Dict[Text, Text], bool, bool, bool) -> Text
+    # returns the filename of the Singularity image (e.g. hello-world-latest.img)
     if r:
         errmsg = None
         try:
             subprocess.check_output(["singularity", "--version"])
         except subprocess.CalledProcessError as e:
-            errmsg = "Cannot communicate with docker daemon: " + Text(e)
+            errmsg = "Cannot execute 'singularity --version' " + Text(e)
         except OSError as e:
-            errmsg = "'docker' executable not found: " + Text(e)
+            errmsg = "'singularity' executable not found: " + Text(e)
 
         if errmsg:
             if req:
@@ -122,10 +130,9 @@ def get_from_requirements(r, req, pull_image, dry_run=False):
                 return None
 
         if get_image(r, pull_image, dry_run):
-            print r["dockerImageId"]
             return r["dockerImageId"]
         else:
             if req:
-                raise WorkflowException(u"Docker image %s not found" % r["dockerImageId"])
+                raise WorkflowException(u"Container image %s not found" % r["dockerImageId"])
 
     return None

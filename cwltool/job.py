@@ -406,15 +406,15 @@ class DockerCommandLineJob(JobBase):
 # No equivalent
 #        if rm_container:
 #            runtime.append(u"--rm")
-        runtime.insert(0, u"SINGULARITYENV_TMPDIR=/tmp")
+        env["SINGULARITYENV_TMPDIR"] = "/tmp"
 
         # spec currently says "HOME must be set to the designated output
         # directory." but spec might change to designated temp directory.
         # runtime.append("--env=HOME=/tmp")
-        runtime.insert(0, u"SINGULARITYENV_HOME=%s" % self.builder.outdir)
+        env["SINGULARITYENV_HOME"] = self.builder.outdir
 
         for t, v in self.environment.items():
-            runtime.insert(0, u"SINGULARITYENV_%s=%s" % (t, v))
+            env["SINGULARITYENV_"+t] = v
 
         runtime.append(img_id)
 
