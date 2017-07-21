@@ -26,6 +26,7 @@ def get_image(dockerRequirement, pull_image, dry_run=False):
             dockerRequirement["dockerImageId"] = re.sub(pattern=r'[:/]', repl=r'-', string=dockerRequirement["dockerImageId"]) + ".img"
         else:
             dockerRequirement["dockerImageId"] = re.sub(pattern=r'[:/]', repl=r'-', string=dockerRequirement["dockerPull"]) + ".img"
+            dockerRequirement["dockerPull"] = "docker://" + dockerRequirement["dockerPull"])
 
 #    for ln in subprocess.check_output(
 #            ["docker", "images", "--no-trunc", "--all"]).decode('utf-8').splitlines():
@@ -121,6 +122,7 @@ def get_from_requirements(r, req, pull_image, dry_run=False):
                 return None
 
         if get_image(r, pull_image, dry_run):
+            print r["dockerImageId"]
             return r["dockerImageId"]
         else:
             if req:
