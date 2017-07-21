@@ -1,0 +1,14 @@
+Singularity integration for CWL
+
+Tested on a vagrant machine set up according to singularity's installation instructions
+http://singularity.lbl.gov/install-mac
+Some additiona packages were required for this box in order to get basic things running (e.g. pip).
+Code for evaluating results were taken from section 2.6 of CWL User Guide
+http://www.commonwl.org/v1.0/UserGuide.html#Running_tools_inside_Docker
+Evaluated using the typical ´cwl-runner tool.cwl job.yml`
+Passed `make test`.
+Some issues running the CWL test spec `https://github.com/common-workflow-language/common-workflow-language.git` due to lack of nodeJS. Rerunning...
+
+
+
+
