@@ -487,7 +487,6 @@ def _job_popen(
     else:
         if job_dir is None:
             job_dir = tempfile.mkdtemp(prefix="cwltooljob")
-	    print "JOB DIR IS {}".format(job_dir)
         if not job_script_contents:
             job_script_contents = SHELL_COMMAND_TEMPLATE
 
@@ -521,8 +520,6 @@ def _job_popen(
                 stderr=sys.stderr,  # to be captured. Else just write everything to stderr (same as above).
                 stdin=subprocess.PIPE,
             )
-	    import pdb
-	    pdb.set_trace()
             if sp.stdin:
                 sp.stdin.close()
 
