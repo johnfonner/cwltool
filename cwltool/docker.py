@@ -54,7 +54,7 @@ def get_image(dockerRequirement, pull_image, dry_run=False):
 #            pass
 
     # check to see if the Singularity container is already downloaded
-    if os.path.isfile(dockerRequirement[" dockerImageId"])
+	if os.path.isfile(dockerRequirement["dockerImageId"]):
         _logger.info("Using local copy of Singularity image")
         found = True
 

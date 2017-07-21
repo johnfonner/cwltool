@@ -480,7 +480,7 @@ def _job_popen(
     else:
         if job_dir is None:
             job_dir = tempfile.mkdtemp(prefix="cwltooljob")
-
+	    print "JOB DIR IS {}".format(job_dir)
         if not job_script_contents:
             job_script_contents = SHELL_COMMAND_TEMPLATE
 
@@ -508,12 +508,14 @@ def _job_popen(
                 f.write(PYTHON_RUN_SCRIPT)
             sp = subprocess.Popen(
                 ["bash", job_script.encode("utf-8")],
-                shell=False,
+                shell=True,
                 cwd=job_dir,
                 stdout=sys.stderr,  # The nested script will output the paths to the correct files if they need
                 stderr=sys.stderr,  # to be captured. Else just write everything to stderr (same as above).
                 stdin=subprocess.PIPE,
             )
+	    import pdb
+	    pdb.set_trace()
             if sp.stdin:
                 sp.stdin.close()
 
